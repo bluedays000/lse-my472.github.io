@@ -18,10 +18,10 @@ library("tidyverse")
 First we need to authenticate. After your application has been approved, you can paste the consumer key, consumer secret, access token, and access token secret strings into the list below:
 
 ```{r}
-authentication <- list(consumer_key = "0UWoK0DIw8ixMXvUlBczuVEU6",
-                 consumer_secret = "TpYUabxYPfdksfWfuvbV4XaHIXfQdTfsgqQccULVF6930w3o3U",
-                 access_token = "1451105644212367365-CXv3iuoklKG3doqvE7kxbcBfT1JQvv",
-                 access_token_secret = "8Sbrxr91i1mg9DrwtWq2kmdwENUHipiJNAXMDx0nWGtne")
+authentication <- list(consumer_key = "______",
+                 consumer_secret = "______",
+                 access_token = "______",
+                 access_token_secret = "______")
 ```
 
 A more convenient approach, which importantly does not depict your individual tokens, can be to store this list once after you have pasted your keys and then to reload it when running some code. Store the list once with:
