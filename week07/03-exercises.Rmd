@@ -5,15 +5,29 @@ date: "11/11/2020"
 output: html_document
 ---
 
+Loading packages:
+
 
 **Exercise 1**
 
 1.1 The file uol.txt contains a list of the 17 member institutions of the University of London. In your text editor, write down a regular expression which finds all postcodes. Note that in some of the postcodes there are white spaces between the two parts and in others not. Your regular expression has to work with both.
 
+```{r}
+
+sample_text <- read_file("uol.txt")
+regex_str <- "([A-Z]{1,2}[0-9]{1,2}[A-Z\\s]*)([0-9][A-Z]{1,2})"
+str_view_all(sample_text, regex_str)
+str_extract_all(sample_text, regex_str)
+```
 
 
 1.2 Next, let us try to mute/delete the second part of each postcode. Add a capturing group to your regular expression with which you can address only the first part, i.e. the first 2-4 characters of the postcodes. Then use find & replace in your text editor and replace all postcodes with only the information stored in capturing group 1. This deletes the second part of each postcode.
 
+```{r}
+
+str_replace_all(sample_text, regex_str, "\\$1")
+
+```
 
 
 **Exercise 2**
@@ -26,17 +40,18 @@ Let us assume for a moment that we only have three features/words in a dfm. Then
 
 ```{r}
 library("quanteda")
+library("quanteda.textstats")
 library("tidyverse")
 ```
 
 ```{r}
 dfm <- data_char_ukimmig2010 %>%                        # 1. study the data
   corpus() %>% 
-  tokens(___________ = TRUE, ___________ = TRUE) %>%    # 2. remove punctuation and numbers
-  tokens_remove(___________) %>%                        # 3. remove stopwords (English)
-  ___________() %>%                                     # 4. stem the tokens
+  tokens(remove_punct = TRUE, remove_numbers = TRUE) %>%    # 2. remove punctuation and numbers
+  tokens_remove(stopwords("en")) %>%                        # 3. remove stopwords (English)
+  tokens_wordstem() %>%                                     # 4. stem the tokens
   dfm() %>%
-  dfm_trim(___________)                                 # 5. minimum word frequency = 2
+  dfm_trim(min_termfreq = 2)                                 # 5. minimum word frequency = 2
 dfm
 ```
 

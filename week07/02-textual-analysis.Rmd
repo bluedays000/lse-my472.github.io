@@ -9,6 +9,7 @@ Loading packages:
 
 ```{r}
 library("quanteda")
+library("quanteda.textplots")
 library("tidyverse")
 ```
 
@@ -27,7 +28,6 @@ Next, we create a `corpus` object from the texts using the `quanteda` package. F
 
 ```{r}
 exemplary_corpus <- corpus(exemplary_documents,
-
                            docvars = data.frame(name = names(exemplary_documents),
                                                 characters = str_count(exemplary_documents))
                            )
